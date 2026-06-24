@@ -19,17 +19,17 @@ class FlipCardUseCase {
             if (i == cardIndex) c.copy(isFlipped = true) else c
         }
 
-        return when {
-            state.firstSelected == null -> state.copy(
+        return when (state.firstSelected) {
+            null -> state.copy(
                 board = newBoard,
                 firstSelected = cardIndex,
-                phase = GamePhase.WAITING_SECOND
+                phase = GamePhase.WAITING_SECOND,
             )
             else -> state.copy(
                 board = newBoard,
                 secondSelected = cardIndex,
                 phase = GamePhase.CHECKING,
-                moves = state.moves + 1
+                moves = state.moves + 1,
             )
         }
     }

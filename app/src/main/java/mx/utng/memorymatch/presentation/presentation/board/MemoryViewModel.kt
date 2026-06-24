@@ -43,14 +43,14 @@ class MemoryViewModel(
         _state.value = GameState(
             board = board,
             phase = GamePhase.SELECTING_FIRST,
-            bestTime = bestTime
+            bestTime = bestTime,
         )
         startTimer()
     }
 
     fun onCardTapped(cardIndex: Int) {
         val current = _state.value
-        if (current.phase == GamePhase.CHECKING || current.phase == GamePhase.WON) return
+        if ((current.phase == GamePhase.CHECKING) || (current.phase == GamePhase.WON)) return
 
         val afterFlip = flipCard(current, cardIndex)
         _state.value = afterFlip
@@ -102,8 +102,12 @@ class MemoryViewModel(
         val newBoard = state.board.mapIndexed { i, c ->
             if (i == first || i == second) c.copy(isFlipped = false) else c
         }
-        return state.copy(board=newBoard, firstSelected=null,
-            secondSelected=null, phase=GamePhase.SELECTING_FIRST)
+        return state.copy(
+            board = newBoard,
+            firstSelected = null,
+            secondSelected = null,
+            phase = GamePhase.SELECTING_FIRST
+        )
     }
 
     private fun startTimer() {

@@ -49,8 +49,7 @@ fun BoardScreen(viewModel: MemoryViewModel = viewModel()) {
 
         // HUD superior: tiempo (Sin scrollAway por incompatibilidad con LazyGridState)
         TimeText {
-            timeTextSeparator()
-            curvedText("${state.elapsedSeconds}s · ${state.moves} mov")
+            curvedText(" • ${state.elapsedSeconds}s • ${state.moves} m")
         }
 
         // Cuadrícula 3×4 centrada en la pantalla circular
